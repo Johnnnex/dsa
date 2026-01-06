@@ -11,6 +11,7 @@ I'll be pushing new solutions here whenever I get the itch to solve a problem. N
 I'm just a person who enjoys coding challenges. You can check out my LeetCode profile if you're curious:
 
 [My LeetCode Profile](https://leetcode.com/u/_Johnex)
+[Twitter (I hare calling it X)](https://x.com/_johnex)
 
 ## Contributing
 

@@ -28,7 +28,7 @@ MagicDictionary.prototype.search = function (searchWord) {
 	}
 
 	return false;
-}; //(4ms approx)
+}; // (4ms approx)
 
 /**
  * Your MagicDictionary object will be instantiated and called as such:
