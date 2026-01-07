@@ -46,3 +46,45 @@ const fibDynamicProgrammingEnhanced = (n) => {
 
 	return curr;
 };
+
+// All Paths in a DAG
+const dagDFS = (graph) => {
+	const result = [];
+	const path = [0];
+
+	const dfs = (index) => {
+		if (index === graph.length - 1) {
+			result.push([...path]);
+
+			return;
+		}
+
+		for (neighbour of graph[index]) {
+			path.push(neighbour);
+			dfs(neighbour);
+			path.pop();
+		}
+	};
+
+	dfs(0);
+};
+
+const dagBFS = (graph) => {
+	const result = [];
+
+	const queue = [[0, [0]]];
+
+	while (queue.length) {
+		const [index, paths] = queue.shift();
+
+		if (index === graph.length - 1) {
+			result.push(paths);
+
+			continue;
+		}
+
+		for (const child of graph[index]) {
+			queue.push([child, [...paths, child]]);
+		}
+	}
+};

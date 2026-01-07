@@ -67,6 +67,35 @@ var wordBreak = function (s, wordDict) {
 	return paths;
 };
 
+// BFS method:
+const wordBreakBFS = (s, wordDict) => {
+	const queue = [[0, []]];
+	const result = [];
+	const wordDictionary = new Set(wordDict);
+
+	const bfs = () => {
+		while (queue.length) {
+			const [index, prevPaths] = queue.shift();
+
+			if (index === s.length) {
+				result.push(prevPaths.join(' '));
+
+				continue;
+			}
+
+			for (let i = index; i < s.length; i++) {
+				const prefix = s.slice(index, i + 1);
+
+				if (wordDictionary.has(prefix)) {
+					queue.push([i + 1, [...prevPaths, prefix]]);
+				}
+			}
+		}
+	};
+
+	bfs();
+};
+
 // Word break v1:
 /**
  * @param {string} s
@@ -95,4 +124,26 @@ var wordBreak = function (s, wordDict) {
 		return false;
 	};
 	return dfs(0);
+};
+
+const wordBreakIBFS = (s, wordDict) => {
+	const wordDictionary = new Set(wordDict);
+	const queue = [0]; // we're finding shortest paths, we make it simple and just store indexes of beginnings of words that exists in dictionary!
+
+	const bfs = () => {
+		while (queue.length) {
+			const index = queue.shift();
+
+			if (index === s.length) return true;
+
+			for (let i = index; i < s.length; i++) {
+				const prefix = s.slice(index, i + 1);
+
+				if (wordDictionary.has(prefix)) queue.push(i + 1);
+			}
+		}
+
+		return false;
+	};
+	return bfs();
 };

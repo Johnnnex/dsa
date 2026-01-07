@@ -23,3 +23,23 @@ function allPathsSourceTarget(graph) {
 	dfs(0); // Start DFS from node 0
 	return result;
 }
+
+const allPathsSourceTargetBFS = (graph) => {
+	const result = [];
+
+	const queue = [[0, [0]]];
+
+	while (queue.length) {
+		const [index, paths] = queue.shift();
+
+		if (index === graph.length - 1) {
+			result.push(paths);
+
+			continue;
+		}
+
+		for (const child of graph[index]) {
+			queue.push([child, [...paths, child]]);
+		}
+	}
+};
