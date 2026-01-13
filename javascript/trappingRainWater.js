@@ -33,23 +33,6 @@ var trap = function (height) {
  * @return {number}
  */
 var trap = function (height) {
-	let ans = 0;
-	let lMax = 0,
-		rMax = 0;
-	let l = 0,
-		r = height.length - 1;
-
-	while (l < r) {
-		if (height[l] <= height[r]) {
-			lMax = Math.max(lMax, height[l]);
-			ans += lMax - height[l];
-			l++;
-		} else {
-			rMax = Math.max(rMax, height[r]);
-			ans += rMax - height[r];
-			r--;
-		}
-	}
-	return ans;
+	let lMax;
 };
 // O(1) space, O(n) time

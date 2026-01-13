@@ -67,7 +67,7 @@ const exist = (board, word) => {
 					nx < board.length &&
 					ny >= 0 &&
 					ny < board[0].length &&
-					[nx][ny] === word[index + 1]
+					board[nx][ny] === word[index + 1]
 				) {
 					queue.push([index + 1, nx, ny]);
 				}
