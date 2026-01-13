@@ -25,7 +25,6 @@ var trap = function (height) {
 
 	return waterUnits;
 };
-
 // O(n) -> Both complexities
 
 /**
@@ -33,6 +32,36 @@ var trap = function (height) {
  * @return {number}
  */
 var trap = function (height) {
-	let lMax;
+	let lMax = 0,
+		rMax = 0; // Max value as we move
+
+	let left = 0,
+		right = height.length - 1; // Pointers, we'd move these, sort height, deduct water level till we get to the middle!
+	let waterLevel = 0;
+
+	while (left < right) {
+		if (height[left] <= height[right]) {
+			// We first check if max value is smaller than current height, if it is, we can't trap water, need a higher
+			// previous wall, that's the goal of lMax!
+			if (lMax <= height[left]) {
+				lMax = height[left];
+			} else {
+				// We can trap water cause previous wall is greater than this, therefore:
+				waterLevel += lMax - height[left];
+			}
+
+			left++;
+		} else {
+			if (rMax <= height[right]) {
+				rMax = height[right];
+			} else {
+				waterLevel += rMax - height[right];
+			}
+
+			right--;
+		}
+	}
+
+	return waterLevel; // voila!
 };
 // O(1) space, O(n) time
