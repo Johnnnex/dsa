@@ -37,7 +37,7 @@ function bstSuccessor(node) {
 }
 
 function findMin(node) {
-	if (node.left) {
+	while (node.left) {
 		node = node.left;
 	}
 	return node;
